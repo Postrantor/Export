@@ -1,0 +1,23 @@
+# 在 ~/.bashrc 文件中添加以下内容
+
+```bash
+function cd() {
+  if [[ $1 =~ ^\.{2,}$ ]]; then
+    local count=${#1}
+    local path=""
+    for ((i=1; i<count; i++)); do
+      path+="../"
+    done
+    builtin cd "$path"
+  else
+    builtin cd "$@"
+  fi
+}
+```
+
+# 为了使 .bashrc 文件中的更改生效，可以运行以下命令：
+
+```bash
+source ~/.bashrc
+```
+
